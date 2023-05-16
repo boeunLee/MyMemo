@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media(min-width: 1263px) {
+            input {
+                display: block;
+                width: 300px;
+                height: 30px;
+                margin-bottom: 10px;
+            }
+
+            /* textarea {
+            display: block;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 10px;
+        } */
+
+            button {
+                margin-top: 10px;
+                display: block;
+                width: 306px;
+                height: 30px;
+                padding: 0;
+                border: 0;
+                box-sizing: border-box;
+                background-color: #00a9ff;
+                ;
+                font-weight: bold;
+                color: #fff;
+                border-radius: 5px;
+            }
+
+            .show {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        @media(max-width:1262px) {
+            main {
+                display: flex;
+            }
+
+            input {
+                display: block;
+                width: 300px;
+                height: 30px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                margin-top: 10px;
+                display: block;
+                width: 306px;
+                height: 30px;
+                padding: 0;
+                border: 0;
+                box-sizing: border-box;
+                background-color: #00a9ff;
+                ;
+                font-weight: bold;
+                color: #fff;
+                border-radius: 5px;
+                margin: 10px auto;
+            }
+
+            #article2 button {
+                margin: 30px auto;
+            }
+        }
+
+        body {
+            background-color: rgba(248, 239, 155, 1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        nav {
+            background-color: #00a9ff;
+            height: 50px;
+        }
+
+        nav h2 {
+            text-align: center;
+            padding:10px;
+            color: #fff;
+        }
+
+        #article1 {
+            border: 1px solid black;
+            margin-right: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #article1 span {
+            display: flex;
+            flex-direction: row;
+            margin-left: 300px;
+        }
+
+        #article1 input {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        #write-memo {
+            background-color: #fff;
+        }
+
+        #article1 button {
+            margin-left: auto;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        #article2 {
+            margin-top: 10px;
+            width: 100%;
+            /* border:1px solid black; */
+        }
+
+        #article2 section {
+            border: 3px solid #000;
+            margin-bottom: 10px;
+        }
+
+        #articl2 p {
+            border: 3px solid #000;
+            text-align: center;
+        }
+
+        #article2 div {
+            border: 2px solid rgb(219 221 230);
+            background-color: #fff;
+        }
+
+        #article2 button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>보은의 메모장 <img src="./img/icon_check.png" alt=""></h1>
+
+        <section>
+            <nav>
+                <h2>memo</h2>
+            </nav>
+
+            <section class="show">
+                <article id="article1">
+                    <span>
+                        <h3>제목: </h3><input type="text" id="title" placeholder="제목을 입력하세요" />
+                    </span>
+                    <!-- 메모 내용이 입력될 부분 -->
+                    <div id="write-memo"></div>
+                    <button onclick="saveNote()">작성완료</button>
+                </article>
+
+                <article id="article2">
+                </article>
+            </section>
+        </section>
+    </main>
+    <script>
+        let allMemo = JSON.parse(localStorage.getItem("allMemo"));
+        allMemo = allMemo ?? [];
+
+        const Editor = toastui.Editor;
+
+        const editor = new Editor({
+            el: document.querySelector("#write-memo"),
+            height: "600px",
+            initialEditType: "markdown",
+            previewStyle: "vertical",
+        });
+        // editor.getHTML()
+        // editor.getMarkdown()
+
+        render();
+
+        function saveNote() {
+            const title = document.getElementById("title").value;
+            // const content = document.getElementById("content").value;
+            const content = editor.getHTML();
+
+            allMemo.push({ title, content, len: allMemo.length });
+
+            localStorage.setItem("allMemo", JSON.stringify(allMemo));
+            render();
+        }
+
+        function render() {
+            const display = document.getElementById("article2");
+            display.innerHTML = "";
+
+            // // 최신 게시물이 위로 올라오도록
+            // for (let i = allMemo.length; i > 0 ; i--) {
+            //     // 아래와 유사 코드
+            // }
+
+            for (const item of allMemo) {
+                const savememo = document.createElement("section");
+                const saveTitle = document.createElement("h2");
+                const saveContent = document.createElement("div");
+                const saveId = document.createElement("p");
+                const deleteMemoBtn = document.createElement("button");
+
+                saveTitle.textContent = "제목: " + item.title;
+                saveContent.innerHTML = item.content;
+                saveId.textContent = item.len + 1 + "번째 입력한 메모";
+                deleteMemoBtn.textContent = "메모삭제";
+                deleteMemoBtn.setAttribute("id", item.len);
+                deleteMemoBtn.setAttribute("onclick", "remove()");
+
+                display.appendChild(savememo);
+                // display.appendChild(saveId);
+                // display.appendChild(saveTitle);
+                // display.appendChild(saveContent);
+                // display.appendChild(deleteMemoBtn);
+                savememo.appendChild(saveId);
+                savememo.appendChild(saveTitle);
+                savememo.appendChild(saveContent);
+                savememo.appendChild(deleteMemoBtn);
+            }
+        }
+
+        function remove() {
+            // console.log(event.srcElement.id);
+            // console.log(allMemo);
+            const idx = allMemo.find(
+                (item) => item.len == event.srcElement.id
+            );
+            if (idx) {
+                allMemo.splice(
+                    allMemo.findIndex((item) => item.len == idx.len),
+                    1
+                );
+            }
+            localStorage.setItem("allMemo", JSON.stringify(allMemo));
+            render();
+        }
+    </script>
+</body>
+
+</html>

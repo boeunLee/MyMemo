@@ -1,266 +1,316 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <style>
-        main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+      body {
+        font-family: "Pretandard", sans-serif;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media (min-width: 1263px) {
+        input {
+          display: block;
+          width: 300px;
+          height: 30px;
+          margin-bottom: 10px;
         }
 
-        @media(min-width: 1263px) {
-            input {
-                display: block;
-                width: 300px;
-                height: 30px;
-                margin-bottom: 10px;
-            }
-
-            /* textarea {
+        /* textarea {
             display: block;
             width: 300px;
             height: 300px;
             margin-bottom: 10px;
         } */
 
-            button {
-                margin-top: 10px;
-                display: block;
-                width: 306px;
-                height: 30px;
-                padding: 0;
-                border: 0;
-                box-sizing: border-box;
-                background-color: #00a9ff;
-                ;
-                font-weight: bold;
-                color: #fff;
-                border-radius: 5px;
-            }
-
-            .show {
-                display: flex;
-                flex-direction: row;
-            }
+        button {
+          display: block;
+          width: 306px;
+          height: 35px;
+          padding: 0;
+          border: 0;
+          box-sizing: border-box;
+          background-color: #00a9ff;
+          font-weight: bold;
+          color: #fff;
+          border-radius: 4px;
         }
 
-        @media(max-width:1262px) {
-            main {
-                display: flex;
-            }
+        .show {
+          display: flex;
+          flex-direction: row;
+        }
+      }
 
-            input {
-                display: block;
-                width: 300px;
-                height: 30px;
-                margin-bottom: 10px;
-            }
-
-            button {
-                margin-top: 10px;
-                display: block;
-                width: 306px;
-                height: 30px;
-                padding: 0;
-                border: 0;
-                box-sizing: border-box;
-                background-color: #00a9ff;
-                ;
-                font-weight: bold;
-                color: #fff;
-                border-radius: 5px;
-                margin: 10px auto;
-            }
-
-            #article2 button {
-                margin: 30px auto;
-            }
+      @media (max-width: 1262px) {
+        main {
+          display: flex;
         }
 
-        body {
-            background-color: rgba(248, 239, 155, 1);
+        input {
+          display: block;
+          width: 300px;
+          height: 30px;
         }
 
-        h1 {
-            text-align: center;
-        }
-
-        nav {
-            background-color: #00a9ff;
-            height: 50px;
-        }
-
-        nav h2 {
-            text-align: center;
-            padding:10px;
-            color: #fff;
-        }
-
-        #article1 {
-            border: 1px solid black;
-            margin-right: 10px;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        #article1 span {
-            display: flex;
-            flex-direction: row;
-            margin-left: 300px;
-        }
-
-        #article1 input {
-            margin-left: 10px;
-            margin-top: 10px;
-        }
-
-        #write-memo {
-            background-color: #fff;
-        }
-
-        #article1 button {
-            margin-left: auto;
-            margin-bottom: 10px;
-            margin-right: 10px;
-        }
-
-        #article2 {
-            margin-top: 10px;
-            width: 100%;
-            /* border:1px solid black; */
-        }
-
-        #article2 section {
-            border: 3px solid #000;
-            margin-bottom: 10px;
-        }
-
-        #articl2 p {
-            border: 3px solid #000;
-            text-align: center;
-        }
-
-        #article2 div {
-            border: 2px solid rgb(219 221 230);
-            background-color: #fff;
+        button {
+          display: block;
+          width: 306px;
+          padding: 0;
+          border: 0;
+          box-sizing: border-box;
+          background-color: #00a9ff;
+          font-weight: bold;
+          color: #fff;
+          border-radius: 4px;
         }
 
         #article2 button {
-            margin-bottom: 10px;
+          margin: 30px auto;
         }
+      }
+
+      body {
+        background-color: rgba(248, 239, 155, 1);
+      }
+
+      h1 {
+        margin-left: auto;
+        /* text-align: center; */
+      }
+
+      nav {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background-color: #00a9ff;
+        height: 50px;
+      }
+
+      nav h2 {
+        text-align: center;
+        padding: 10px;
+        color: #fff;
+      }
+
+      #article1 {
+        /* border: 1px solid black; */
+        /* margin-right: 10px;
+        margin-top: 10px; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      #article1 #title {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        h3 {
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          display: flex;
+          color: white;
+          height: 35px;
+          width: 50px;
+          justify-content: center;
+          align-items: center;
+          background-color: #00a9ff;
+          border-radius: 4px;
+        }
+        div {
+          box-sizing: border-box;
+          height: 35px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          border: 1px solid #fff;
+          border-radius: 4px;
+        }
+
+        div > input {
+          border: none;
+          box-sizing: border-box;
+          height: 100%;
+          outline: none;
+          padding-left: 10px;
+          &:hover {
+            border: 1px solid #00a9ff;
+          }
+        }
+      }
+
+      .write-containter {
+        display: flex;
+        justify-content: space-around;
+        div {
+          /* padding: 5px; */
+          width: 50%;
+          border-radius: 4px;
+          /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24); */
+          /* background-color: #fff; */
+          color: #000;
+        }
+      }
+
+      #write-memo {
+        background-color: #fff;
+      }
+
+      #article1 button {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        margin-left: auto;
+        /* margin-bottom: 10px;
+        margin-right: 10px; */
+        height: 35px;
+      }
+
+      #article2 {
+        /* margin-top: 10px; */
+        width: 100%;
+        /* border:1px solid black; */
+      }
+
+      #article2 section {
+        border: 3px solid #000;
+        margin-bottom: 10px;
+      }
+
+      #articl2 p {
+        border: 3px solid #000;
+        text-align: center;
+      }
+
+      #article2 div {
+        border: 2px solid rgb(219 221 230);
+        background-color: #fff;
+      }
+
+      #article2 button {
+        margin-bottom: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <h1>보은의 메모장 <img src="./img/icon_check.png" alt=""></h1>
+      <section>
+        <nav>
+          <h2>memo</h2>
+        </nav>
 
-        <section>
-            <nav>
-                <h2>memo</h2>
-            </nav>
-
-            <section class="show">
-                <article id="article1">
-                    <span>
-                        <h3>제목: </h3><input type="text" id="title" placeholder="제목을 입력하세요" />
-                    </span>
-                    <!-- 메모 내용이 입력될 부분 -->
-                    <div id="write-memo"></div>
-                    <button onclick="saveNote()">작성완료</button>
-                </article>
-
-                <article id="article2">
-                </article>
+        <section class="show">
+          <article id="article1">
+            <div id="title">
+              <h3>제목</h3>
+              <div>
+                <input type="text" placeholder="제목을 입력하세요" />
+              </div>
+            </div>
+            <!-- 메모 내용이 입력될 부분 -->
+            <section class="write-containter">
+              <div>내용작성</div>
+              <div>미리보기</div>
             </section>
+            <div id="write-memo"></div>
+            <button onclick="saveNote()">작성완료</button>
+          </article>
+
+          <article id="article2"></article>
         </section>
+      </section>
     </main>
     <script>
-        let allMemo = JSON.parse(localStorage.getItem("allMemo"));
-        allMemo = allMemo ?? [];
+      let allMemo = JSON.parse(localStorage.getItem("allMemo"));
+      allMemo = allMemo ?? [];
 
-        const Editor = toastui.Editor;
+      const Editor = toastui.Editor;
 
-        const editor = new Editor({
-            el: document.querySelector("#write-memo"),
-            height: "600px",
-            initialEditType: "markdown",
-            previewStyle: "vertical",
-        });
-        // editor.getHTML()
-        // editor.getMarkdown()
+      const editor = new Editor({
+        el: document.querySelector("#write-memo"),
+        height: "600px",
+        initialEditType: "markdown",
+        previewStyle: "vertical",
+      });
+      // editor.getHTML()
+      // editor.getMarkdown()
 
+      render();
+
+      function saveNote() {
+        const title = document.getElementById("title").value;
+        // const content = document.getElementById("content").value;
+        const content = editor.getHTML();
+
+        allMemo.push({ title, content, len: allMemo.length });
+
+        localStorage.setItem("allMemo", JSON.stringify(allMemo));
         render();
+      }
 
-        function saveNote() {
-            const title = document.getElementById("title").value;
-            // const content = document.getElementById("content").value;
-            const content = editor.getHTML();
+      function render() {
+        const display = document.getElementById("article2");
+        display.innerHTML = "";
 
-            allMemo.push({ title, content, len: allMemo.length });
+        // // 최신 게시물이 위로 올라오도록
+        // for (let i = allMemo.length; i > 0 ; i--) {
+        //     // 아래와 유사 코드
+        // }
 
-            localStorage.setItem("allMemo", JSON.stringify(allMemo));
-            render();
+        for (const item of allMemo) {
+          const savememo = document.createElement("section");
+          const saveTitle = document.createElement("h2");
+          const saveContent = document.createElement("div");
+          const saveId = document.createElement("p");
+          const deleteMemoBtn = document.createElement("button");
+
+          saveTitle.textContent = "제목: " + item.title;
+          saveContent.innerHTML = item.content;
+          saveId.textContent = item.len + 1 + "번째 입력한 메모";
+          deleteMemoBtn.textContent = "메모삭제";
+          deleteMemoBtn.setAttribute("id", item.len);
+          deleteMemoBtn.setAttribute("onclick", "remove()");
+
+          display.appendChild(savememo);
+          // display.appendChild(saveId);
+          // display.appendChild(saveTitle);
+          // display.appendChild(saveContent);
+          // display.appendChild(deleteMemoBtn);
+          savememo.appendChild(saveId);
+          savememo.appendChild(saveTitle);
+          savememo.appendChild(saveContent);
+          savememo.appendChild(deleteMemoBtn);
         }
+      }
 
-        function render() {
-            const display = document.getElementById("article2");
-            display.innerHTML = "";
-
-            // // 최신 게시물이 위로 올라오도록
-            // for (let i = allMemo.length; i > 0 ; i--) {
-            //     // 아래와 유사 코드
-            // }
-
-            for (const item of allMemo) {
-                const savememo = document.createElement("section");
-                const saveTitle = document.createElement("h2");
-                const saveContent = document.createElement("div");
-                const saveId = document.createElement("p");
-                const deleteMemoBtn = document.createElement("button");
-
-                saveTitle.textContent = "제목: " + item.title;
-                saveContent.innerHTML = item.content;
-                saveId.textContent = item.len + 1 + "번째 입력한 메모";
-                deleteMemoBtn.textContent = "메모삭제";
-                deleteMemoBtn.setAttribute("id", item.len);
-                deleteMemoBtn.setAttribute("onclick", "remove()");
-
-                display.appendChild(savememo);
-                // display.appendChild(saveId);
-                // display.appendChild(saveTitle);
-                // display.appendChild(saveContent);
-                // display.appendChild(deleteMemoBtn);
-                savememo.appendChild(saveId);
-                savememo.appendChild(saveTitle);
-                savememo.appendChild(saveContent);
-                savememo.appendChild(deleteMemoBtn);
-            }
+      function remove() {
+        // console.log(event.srcElement.id);
+        // console.log(allMemo);
+        const idx = allMemo.find((item) => item.len == event.srcElement.id);
+        if (idx) {
+          allMemo.splice(
+            allMemo.findIndex((item) => item.len == idx.len),
+            1
+          );
         }
-
-        function remove() {
-            // console.log(event.srcElement.id);
-            // console.log(allMemo);
-            const idx = allMemo.find(
-                (item) => item.len == event.srcElement.id
-            );
-            if (idx) {
-                allMemo.splice(
-                    allMemo.findIndex((item) => item.len == idx.len),
-                    1
-                );
-            }
-            localStorage.setItem("allMemo", JSON.stringify(allMemo));
-            render();
-        }
+        localStorage.setItem("allMemo", JSON.stringify(allMemo));
+        render();
+      }
     </script>
-</body>
-
+  </body>
 </html>
